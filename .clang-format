@@ -4,41 +4,59 @@ Language:        Cpp
 Standard:        Auto
 ColumnLimit:     80
 
-# =========================
-#  Align
-# =========================
-PointerAlignment:       Left
-DerivePointerAlignment: false
-
+## =========================
+##  Align
+## =========================
+# ファイル解析によるポインタ位置のフォーマットをしない
+DerivePointerAlignment:       false
+# int* const * x = NULL; のようにフォーマット
+PointerAlignment:             Left
+SpaceAroundPointerQualifiers: After
+# int& x;
+ReferenceAlignment:           Left
 AlignTrailingComments:        true
-AlignConsecutiveMacros:       false
-AlignConsecutiveAssignments:  true
-AlignConsecutiveDeclarations: true
+# 代入・宣言・マクロ・ビットフィールドはコメントをまたいで揃える
+# 空行区切りの場合は揃えない
+AlignConsecutiveMacros:       AcrossComments
+AlignConsecutiveBitFields:    AcrossComments
+AlignConsecutiveAssignments:  AcrossComments
+AlignConsecutiveDeclarations: AcrossComments
 
-# =========================
-#  Break
-# =========================
-BinPackArguments:  true
+## =========================
+##  Break
+## =========================
+BinPackArguments:  false
 BinPackParameters: true
 BreakBeforeBraces: Attach
-AlwaysBreakBeforeMultilineStrings:       true
-BreakConstructorInitializersBeforeComma: false
+BreakConstructorInitializers: BeforeColon
+# 3項演算子の : や ? を行末に
+BreakBeforeTernaryOperators: false
+AlwaysBreakBeforeMultilineStrings: false
 
-# =========================
-#  Indentation
-# =========================
+## =========================
+##  Indentation
+## =========================
 IndentWidth:          2
+# case文はインデントする
 IndentCaseLabels:     true
+# private/publicなどはスペース1つでインデント
 AccessModifierOffset: -1
+# 名前空間の部分はインデントなし
 NamespaceIndentation: None
+# 配列などの初期化時、行末にカンマを挿入する
+InsertTrailingCommas: Wrapped
 
-# =========================
-#  Short
-# =========================
+## =========================
+##  Short
+## =========================
 AllowShortEnumsOnASingleLine:        true
-AllowShortBlocksOnASingleLine:       Never
-AllowShortCaseLabelsOnASingleLine:   true
-AllowShortFunctionsOnASingleLine:    All
-AllowShortLambdasOnASingleLine:      All
-AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine:        false
+# ブロック {} は短くても1行にまとめない
+AllowShortBlocksOnASingleLine:       Never
+# ラムダ式と関数は空 {} の場合と宣言時以外に1行まとめを試みる
+AllowShortLambdasOnASingleLine:      Inline
+AllowShortFunctionsOnASingleLine:    Inline
+# 短いcase文は1行に
+AllowShortCaseLabelsOnASingleLine:   true
+# elseがない短いifのみ1行まとめ
+AllowShortIfStatementsOnASingleLine: WithoutElse
