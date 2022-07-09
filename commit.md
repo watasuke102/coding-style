@@ -48,10 +48,10 @@ $ git log --format=%s | sed 's/:.*//g' | sort | uniq -c | sort -r
 
 [TAGether](https://github.com/watasuke102/TAGether)を例に
 
-### f455343
+### 7936d87
 
 ```
-update: edit> Tab連打で問題文→答え→コメントの順にフォーカス出来るようにした
+fix: exam>フォーカスが正常に機能しなかった問題
 ```
 
 ### 219492b
